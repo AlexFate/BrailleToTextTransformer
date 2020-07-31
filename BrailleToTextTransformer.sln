@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrailleToTextTransformer", "BrailleToTextTransformer\BrailleToTextTransformer.csproj", "{A1C18485-5C84-4593-952E-D01FF6394882}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrailleTests", "BrailleTests\BrailleTests.csproj", "{0E29571D-D03D-43EF-BD04-DD03992BDDE2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A1C18485-5C84-4593-952E-D01FF6394882}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1C18485-5C84-4593-952E-D01FF6394882}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1C18485-5C84-4593-952E-D01FF6394882}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1C18485-5C84-4593-952E-D01FF6394882}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E29571D-D03D-43EF-BD04-DD03992BDDE2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E29571D-D03D-43EF-BD04-DD03992BDDE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E29571D-D03D-43EF-BD04-DD03992BDDE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E29571D-D03D-43EF-BD04-DD03992BDDE2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
