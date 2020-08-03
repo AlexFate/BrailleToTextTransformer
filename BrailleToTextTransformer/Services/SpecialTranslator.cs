@@ -1,21 +1,17 @@
 using System.Collections.Generic;
 using System.Linq;
-using BrailleToTextTransformer.Interfaces;
+using BrailleToTextTransformer.Base;
 
 namespace BrailleToTextTransformer.Services
 {
-    public class SpecialTranslator : ITranslator
+    public class SpecialTranslator : TranslatorBase
     {
-        public Dictionary<string, string> TranslatorDictionary { get; }
-        public bool IsReverseTranslation { get; }
-
-        public SpecialTranslator(bool isReverseTranslation = false)
+        public SpecialTranslator(bool isReverseTranslation = false) : base(isReverseTranslation)
         {
-            IsReverseTranslation = isReverseTranslation;
             TranslatorDictionary = CreateTranslationDictionary(isReverseTranslation);
         }
-
-        public string TranslateChar(char input) => GetTranslatedChar(input).ToString();
+        
+        public override string TranslateChar(char input) => GetTranslatedChar(input).ToString();
 
         private char GetTranslatedChar(char input) => TranslatorDictionary[input.ToString()].First();
         private static Dictionary<string, string> CreateTranslationDictionary(bool isReverseTranslation)
