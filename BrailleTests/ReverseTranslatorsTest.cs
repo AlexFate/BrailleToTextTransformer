@@ -1,3 +1,4 @@
+using BrailleToTextTransformer.Base.Interfaces;
 using BrailleToTextTransformer.Models;
 using BrailleToTextTransformer.Services;
 using Xunit;
@@ -48,6 +49,27 @@ namespace BrailleTests
             var englishTranslator = new MultilingualTranslator(Language.English, true);
 
             Assert.Equal(expected, englishTranslator.Translate(input));
+        }
+        
+        [Theory]
+        [InlineData("", "")]
+        [InlineData("⠠⠏⠗⠊⠺⠑⠞ ⠍⠊⠗⠲ ⠠⠝⠕ ⠼⠁⠃⠉ ⠼⠁⠃⠉", "Привет мир. Но 123 123")]
+        [InlineData("⠠⠏⠗⠊⠺⠑⠞ some text on another language ⠍⠊⠗⠲ ⠠⠝⠕ ⠼⠁⠃⠉ ⠼⠁⠃⠉", "Привет some text on another language мир. Но 123 123")]
+        public void ReverseRussianTextTranslatorTest(string input, string expected)
+        {
+            var russianTextTranslator = new TextTranslator(Language.Russian, isReverseTranslation: true);
+
+            Assert.Equal(expected, russianTextTranslator.Translate(input));
+        }
+
+        [Theory]
+        [InlineData("", "")]
+        [InlineData("⠠⠓⠑⠇⠇⠕ ⠍⠽ ⠙⠑⠁⠗ ⠙⠥⠙⠑⠲ ⠼⠁⠃⠉ ⠁⠏⠏⠇⠑⠼⠁⠃⠉", "Hello my dear dude. 123 apple123")]
+        public void ReverseEnglishTextTranslatorTest(string input, string expected)
+        {
+            var englishTextTranslator = new TextTranslator(Language.English, isReverseTranslation: true);
+
+            Assert.Equal(expected, englishTextTranslator.Translate(input));
         }
     }
 }

@@ -4,7 +4,7 @@ using BrailleToTextTransformer.Base;
 
 namespace BrailleToTextTransformer.Services
 {
-    public class SpecialTranslator : TranslatorBase
+    public sealed class SpecialTranslator : TranslatorBase
     {
         public SpecialTranslator(bool isReverseTranslation = false) : base(isReverseTranslation)
         {
@@ -23,7 +23,7 @@ namespace BrailleToTextTransformer.Services
                 { "!", "⠖" },
                 { "?", "⠢" },
                 { "-", "⠤" },
-                { " ", " " },
+                { " ", " " }
             };
 
             return isReverseTranslation

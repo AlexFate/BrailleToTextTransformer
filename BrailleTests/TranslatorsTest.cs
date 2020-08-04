@@ -49,5 +49,26 @@ namespace BrailleTests
 
             Assert.Equal(expected, englishTranslator.Translate(input));
         }
+        
+        [Theory]
+        [InlineData("", "")]
+        [InlineData("Привет мир. Но 123 123", "⠠⠏⠗⠊⠺⠑⠞ ⠍⠊⠗⠲ ⠠⠝⠕ ⠼⠁⠃⠉ ⠼⠁⠃⠉")]
+        [InlineData("Привет some text on another language мир. Но 123 123", "⠠⠏⠗⠊⠺⠑⠞ some text on another language ⠍⠊⠗⠲ ⠠⠝⠕ ⠼⠁⠃⠉ ⠼⠁⠃⠉")]
+        public void RussianTextTranslatorTest(string input, string expected)
+        {
+            var russianTextTranslator = new TextTranslator(Language.Russian);
+
+            Assert.Equal(expected, russianTextTranslator.Translate(input));
+        }
+
+        [Theory]
+        [InlineData("", "")]
+        [InlineData("Hello my dear dude. 123 apple123", "⠠⠓⠑⠇⠇⠕ ⠍⠽ ⠙⠑⠁⠗ ⠙⠥⠙⠑⠲ ⠼⠁⠃⠉ ⠁⠏⠏⠇⠑⠼⠁⠃⠉")]
+        public void EnglishTextTranslatorTest(string input, string expected)
+        {
+            var englishTextTranslator = new TextTranslator(Language.English);
+
+            Assert.Equal(expected, englishTextTranslator.Translate(input));
+        }
     }
 }

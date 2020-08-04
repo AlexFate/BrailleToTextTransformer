@@ -4,9 +4,9 @@ using BrailleToTextTransformer.Base;
 
 namespace BrailleToTextTransformer.Services
 {
-    public class NumericTranslator : TranslatorBase
+    public sealed class NumericTranslator : TranslatorBase
     {
-        private const string NumericMarkerSymbol = "⠼";
+        public const string NumericMarkerSymbol = "⠼";
         public NumericTranslator(bool isReverseTranslation = false) : base(isReverseTranslation)
         {
             TranslatorDictionary = CreateTranslationDictionary(isReverseTranslation);

@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using BrailleToTextTransformer.Base;
@@ -10,6 +9,11 @@ namespace BrailleToTextTransformer.Services
     {
         private const char UpperSpecial = '⠠';
 
+        public MultilingualTranslator(bool isReverseTranslation = false) : base(isReverseTranslation)
+        {
+        }
+
+        //TODO: Remove virtual member call from ctor (CreateTranslationDictionary)
         public MultilingualTranslator(Language language, bool isReverseTranslation = false) : base(isReverseTranslation) 
             => TranslatorDictionary = CreateTranslationDictionary(language, isReverseTranslation);
 
@@ -18,9 +22,9 @@ namespace BrailleToTextTransformer.Services
         public override string TranslateChar(char input) => GetTranslatedChar(input);
 
         private string GetTranslatedChar(char input)
-            => IsUpperCaseNeeded(input) ?
-                    UpperSpecial + TranslatorDictionary[input.ToString().ToLower()] :
-                    TranslatorDictionary[input.ToString().ToLower()];
+            => IsUpperCaseNeeded(input) 
+                ? $"{UpperSpecial}{TranslatorDictionary[input.ToString().ToLower()]}"
+                : TranslatorDictionary[input.ToString().ToLower()];
 
         private static bool IsUpperCaseNeeded(char item) => (item >= 'А' && item <= 'Я') || (item >= 'A' && item <= 'Z') || item == '⠠';
 
