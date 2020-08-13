@@ -20,10 +20,10 @@ namespace BrailleToTextTransformer.Services
             Validator = new Validator(isReverseTranslation);
         }
 
-        public string Translate(string input) => ConvertTextToBraille(input);
+        public string Translate(string input) => TranslateText(input);
 
-        public string TranslateChar(char input) => ConvertTextToBraille(input.ToString());
-        private string ConvertTextToBraille(string input)
+        public string TranslateChar(char input) => TranslateText(input.ToString());
+        private string TranslateText(string input)
         {
             if (string.IsNullOrEmpty(input)) return "";
 
