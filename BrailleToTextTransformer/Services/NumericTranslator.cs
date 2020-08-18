@@ -1,6 +1,7 @@
+using BrailleToTextTransformer.Base;
+
 using System.Collections.Generic;
 using System.Linq;
-using BrailleToTextTransformer.Base;
 
 namespace BrailleToTextTransformer.Services
 {
@@ -12,18 +13,19 @@ namespace BrailleToTextTransformer.Services
             TranslatorDictionary = CreateTranslationDictionary(isReverseTranslation);
         }
 
-        public override string Translate(string input) 
-            => IsReverseTranslation 
-                ? GetTranslatedString(input).Replace(NumericMarkerSymbol, "") 
-                : GetTranslatedString(input);
-        public override string TranslateChar(char input) => GetTranslatedNumeric(input).ToString();
-        
-        private string GetTranslatedString(string input)
-            => GetNumberMarker(input) + string.Join("", input.Select(GetTranslatedNumeric).Where(item => item != default));
-        private char GetTranslatedNumeric(char input) 
-            => TranslatorDictionary[input.ToString()].FirstOrDefault();
+        public override string Translate(string input)
+        {
+            var result = base.Translate(input);
+            if (string.IsNullOrEmpty(result)) return result;
+            
+            return IsReverseTranslation ? result : NumericMarkerSymbol + result;
+        }
 
-        private static string GetNumberMarker(string input) => string.IsNullOrEmpty(input) ? "" : NumericMarkerSymbol;
+        public override string TranslateChar(char input) => TranslatorDictionary[input.ToString()];
+
+        public override bool CanTranslate(string input) => base.CanTranslate(input) && ContainsNumericMarker(input);
+
+        private bool ContainsNumericMarker(string input) => !IsReverseTranslation || string.IsNullOrEmpty(input) || input.Contains(NumericMarkerSymbol);
         
         private static Dictionary<string, string> CreateTranslationDictionary(bool isReverseTranslation)
         {

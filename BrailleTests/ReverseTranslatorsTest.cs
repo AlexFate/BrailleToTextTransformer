@@ -21,7 +21,8 @@ namespace BrailleTests
         [Theory]
         [InlineData("", "")]
         [InlineData("⠼⠁⠃⠉", "123")]
-        [InlineData("⠁⠃⠉", "123")]
+        [InlineData("⠁⠃⠉", "")]
+        [InlineData("⠙⠑⠁⠗", "")]
         public void ReverseNumericTranslatorTest(string input, string expected)
         {
             var numericTranslator = new NumericTranslator(true);
@@ -44,6 +45,7 @@ namespace BrailleTests
         [InlineData("", "")]
         [InlineData("⠠⠓", "H")]
         [InlineData("⠠⠓⠑⠇⠇⠕", "Hello")]
+        [InlineData("⠙⠑⠁⠗", "dear")]
         public void ReverseEnglishTranslatorTest(string input, string expected)
         {
             var englishTranslator = new MultilingualTranslator(Language.English, true);

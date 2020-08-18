@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using BrailleToTextTransformer.Base;
@@ -5,15 +6,10 @@ using BrailleToTextTransformer.Models;
 
 namespace BrailleToTextTransformer.Services
 {
-    public class MultilingualTranslator : TranslatorBase
+    public sealed class MultilingualTranslator : TranslatorBase
     {
-        private const char UpperSpecial = '⠠';
+        private const char UpperCaseMarker = '⠠';
 
-        public MultilingualTranslator(bool isReverseTranslation = false) : base(isReverseTranslation)
-        {
-        }
-
-        //TODO: Remove virtual member call from ctor (CreateTranslationDictionary)
         public MultilingualTranslator(Language language, bool isReverseTranslation = false) : base(isReverseTranslation) 
             => TranslatorDictionary = CreateTranslationDictionary(language, isReverseTranslation);
 
@@ -23,27 +19,27 @@ namespace BrailleToTextTransformer.Services
 
         private string GetTranslatedChar(char input)
             => IsUpperCaseNeeded(input) 
-                ? $"{UpperSpecial}{TranslatorDictionary[input.ToString().ToLower()]}"
+                ? $"{UpperCaseMarker}{TranslatorDictionary[input.ToString().ToLower()]}"
                 : TranslatorDictionary[input.ToString().ToLower()];
 
         private static bool IsUpperCaseNeeded(char item) => (item >= 'А' && item <= 'Я') || (item >= 'A' && item <= 'Z') || item == '⠠';
 
         private static string ReturnUpperCase(string output)
         {
-            var charList = output.ToCharArray().ToList();
-            var countOfUpperCaseSymbol = output.Count(item => item == UpperSpecial);
-            for (var i = 0; i < countOfUpperCaseSymbol; i++)
+            var charArray = output.ToCharArray();
+            var countOfUpperCaseMarker = output.Count(item => item == UpperCaseMarker);
+            for (var i = 0; i < countOfUpperCaseMarker; i++)
             {
-                var indexOfUpperSpecial = charList.IndexOf(UpperSpecial);
-                var indexOfUpperSymbol = indexOfUpperSpecial + 1;
-                charList[indexOfUpperSymbol] = charList[indexOfUpperSymbol].ToString().ToUpper().First();
-                charList[indexOfUpperSpecial] = default;
+                var indexOfUpperMarker = Array.IndexOf(charArray, UpperCaseMarker);
+                var indexOfUpperSymbol = indexOfUpperMarker + 1;
+                charArray[indexOfUpperSymbol] = char.ToUpper(charArray[indexOfUpperSymbol]);
+                charArray[indexOfUpperMarker] = default;
             }
-
-            return string.Join("", charList.ToArray().Where(item => item != default));
+            
+            return string.Join("", charArray.Where(item => item != default));
         }
 
-        private protected virtual Dictionary<string, string> CreateTranslationDictionary(Language language, bool isReverseTranslation)
+        private static Dictionary<string, string> CreateTranslationDictionary(Language language, bool isReverseTranslation)
         {
             Dictionary<string, string> result;
             switch (language)

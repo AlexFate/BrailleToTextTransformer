@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using BrailleToTextTransformer.Base;
 using BrailleToTextTransformer.Base.Interfaces;
 using BrailleToTextTransformer.Models;
 
@@ -7,17 +8,23 @@ namespace BrailleToTextTransformer.Services
 {
     public sealed class TextTranslator : ITranslator
     {
-        private MultilingualTranslator LanguageTranslator { get; }
-        private NumericTranslator NumericTranslator { get; }
-        private SpecialTranslator SpecialSymbolTranslator { get; }
-        private Validator Validator { get; }
+        private TranslatorBase LanguageTranslator { get; }
+        private TranslatorBase NumericTranslator { get; }
+        private TranslatorBase SpecialSymbolTranslator { get; }
 
+        public TextTranslator(TranslatorBase languageTranslator, TranslatorBase numericTranslator, 
+            TranslatorBase specialSymbolTranslator)
+        {
+            LanguageTranslator = languageTranslator;
+            NumericTranslator = numericTranslator;
+            SpecialSymbolTranslator = specialSymbolTranslator;
+        }
+        
         public TextTranslator(Language language, bool isReverseTranslation = false)
         {
             LanguageTranslator = new MultilingualTranslator(language, isReverseTranslation);
             NumericTranslator = new NumericTranslator(isReverseTranslation);
             SpecialSymbolTranslator = new SpecialTranslator(isReverseTranslation);
-            Validator = new Validator(isReverseTranslation);
         }
 
         public string Translate(string input) => TranslateText(input);
@@ -28,21 +35,21 @@ namespace BrailleToTextTransformer.Services
             if (string.IsNullOrEmpty(input)) return "";
 
             var result = "";
-            var internalSkip = 0;
-            while (!IsAllTextWasTranslated(input, internalSkip))
+            var countOfTranslatedSymbol = 0;
+            while (!IsAllTextWasTranslated(input, countOfTranslatedSymbol))
             {
-                var forLangTranslation = GetPartOfString(input, LanguageTranslator.CanTranslate, ref internalSkip);
+                var forLangTranslation = GetPartOfString(input, LanguageTranslator.CanTranslate, ref countOfTranslatedSymbol);
 
-                var forSpecialTranslation = GetPartOfString(input, SpecialSymbolTranslator.CanTranslate, ref internalSkip);
+                var forSpecialTranslation = GetPartOfString(input, SpecialSymbolTranslator.CanTranslate, ref countOfTranslatedSymbol);
 
                 var forNumericTranslation = GetPartOfString(
                     input,
                     NumericTranslator.CanTranslate,
-                    ref internalSkip,
-                    Validator.ValidateIsNumericSubstring);
+                    ref countOfTranslatedSymbol,
+                    NumericTranslator.CanTranslate);
 
                 var untranslatedSymbols =
-                    GetPartOfString(input, inputChar => !CanTranslate(inputChar), ref internalSkip);
+                    GetPartOfString(input, inputChar => !CanTranslate(inputChar), ref countOfTranslatedSymbol);
 
                 result += $"{LanguageTranslator.Translate(forLangTranslation)}" +
                           $"{SpecialSymbolTranslator.Translate(forSpecialTranslation)}" +
@@ -57,7 +64,6 @@ namespace BrailleToTextTransformer.Services
                    SpecialSymbolTranslator.CanTranslate(input) ||
                    NumericTranslator.CanTranslate(input);
         }
-
         public bool CanTranslate(char input)
         {
             return LanguageTranslator.CanTranslate(input) || 
@@ -65,11 +71,13 @@ namespace BrailleToTextTransformer.Services
                    NumericTranslator.CanTranslate(input);        
         }
         private static bool IsAllTextWasTranslated(string input, int internalSkip) => internalSkip >= input.Length;
-        private static string GetPartOfString(string input, Func<char, bool> takeWhile, ref int valueForSkip, Func<string, string> validateResult = null)
+        private static string GetPartOfString(string input, Func<char, bool> takeWhile, ref int valueForSkip, Func<string, bool> validateResult = null)
         {
             var forTranslation = string.Join("", input.Skip(valueForSkip).TakeWhile(takeWhile));
 
-            forTranslation = validateResult == null ? forTranslation : validateResult(forTranslation);
+            var mustBeTranslated = validateResult?.Invoke(forTranslation) ?? true;
+
+            forTranslation = mustBeTranslated ? forTranslation : "";
 
             valueForSkip += forTranslation.Length;
 

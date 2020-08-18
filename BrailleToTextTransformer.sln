@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrailleToTextTransformer", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrailleTests", "BrailleTests\BrailleTests.csproj", "{0E29571D-D03D-43EF-BD04-DD03992BDDE2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrailleExampleApp", "BrailleExampleApp\BrailleExampleApp.csproj", "{74C2AC91-072A-4F8F-BB13-519B8CF6C491}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{0E29571D-D03D-43EF-BD04-DD03992BDDE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0E29571D-D03D-43EF-BD04-DD03992BDDE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0E29571D-D03D-43EF-BD04-DD03992BDDE2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74C2AC91-072A-4F8F-BB13-519B8CF6C491}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74C2AC91-072A-4F8F-BB13-519B8CF6C491}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74C2AC91-072A-4F8F-BB13-519B8CF6C491}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74C2AC91-072A-4F8F-BB13-519B8CF6C491}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

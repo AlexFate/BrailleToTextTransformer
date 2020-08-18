@@ -11,7 +11,8 @@ namespace BrailleToTextTransformer.Base
 
         protected TranslatorBase(bool isReverseTranslation = false) => IsReverseTranslation = isReverseTranslation;
 
-        public virtual string Translate(string input) => string.Join("", input.Select(TranslateChar));
+        public virtual string Translate(string input)
+            => CanTranslate(input) ? string.Join("", input.Select(TranslateChar)) : "";
         public abstract string TranslateChar(char input);
         
         public virtual bool CanTranslate(string input) => input.All(CanTranslate);
