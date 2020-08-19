@@ -14,7 +14,7 @@ You can use it as NuGetPackage, or download, compile and add reference on it in 
 * **Maxim Pimkin** - *Creation of an idea and preparation of material for a subject area* - [wowmaks](https://gitlab.com/wowmaks)
 ## Q&A
 ### Why you created this project?
-Hackathone. And of course we don't found simple braille to text translator in NuGet Gallery. (Not mathematics text)          
+Hackathone. And of course we didn't found braille to text translator in NuGet Gallery. (Not mathematics text)          
 
 ### How to use BrailleToTextTransformer?
 Install NuGet package or add link on BrailleToTextTransformer. Then look on our [BrailleExampleApp](https://github.com/AlexFate/BrailleToTextTransformer/tree/master/BrailleExampleApp).
