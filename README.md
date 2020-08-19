@@ -4,7 +4,7 @@ And, of course, allows you to make reverse conversion from Braille to lang.
 ## Example
 * [HowTo](https://github.com/AlexFate/BrailleToTextTransformer/tree/master/BrailleExampleApp) - Project example on github
 ## Getting Started - Installation
-Your can use it as NuGetPackage, or download, compile and add reference on it in your project.
+You can use it as NuGetPackage, or download, compile and add reference on it in your project.
 ## Built With
 * [xUnit] (https://xunit.net/) - Used for testing
 * [.Net Standart](https://docs.microsoft.com/en-us/dotnet/standard/net-standard) - Project can be restored with any version
@@ -32,7 +32,7 @@ It is not bug, it is feature. It ignore symbols that can't be translated.
 Some example:
 #### [First]
 ```c#
-Your select translationLang to Language.English. But input string contains russian symbol.
+You select translationLang to Language.English. But input string contains russian symbol.
 For example: Hi, Джим.
 TextTranslator translate 'Hi, .' to  braille. But ignore Джим.
 ```
@@ -43,7 +43,7 @@ For example: #it_hash_teg
 SpecialTranslators TranslateDictionary doesn't contains symbol '#' and '_', of course it can't translate it.
 ```
 ### I want MORE braille translation, but TextTranslator can translate only casual text?
-Yes, but your can create MathTranslator and use it with TextTranslator. For example:
+Yes, but you can create MathTranslator and use it with TextTranslator. For example:
 Input: casual text with some math
 First iteration (TextTranslator) -> Translate text, and it ignore math.
 Second iteration (put previous result to you MathTranslator) -> it translating maths parts.
