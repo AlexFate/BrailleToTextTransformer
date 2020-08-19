@@ -10,7 +10,7 @@ namespace BrailleToTextTransformer.Services
     {
         private const char UpperCaseMarker = '⠠';
 
-        public MultilingualTranslator(Language language, bool isReverseTranslation = false) : base(isReverseTranslation) 
+        public MultilingualTranslator(Language language, bool isReverseTranslation) : base(isReverseTranslation) 
             => TranslatorDictionary = CreateTranslationDictionary(language, isReverseTranslation);
 
         public override string Translate(string input) => IsReverseTranslation ? ReturnUpperCase(base.Translate(input)) : base.Translate(input);

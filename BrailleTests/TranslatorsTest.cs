@@ -13,7 +13,7 @@ namespace BrailleTests
         [InlineData(".", "⠲")]
         public void SpecialSymbolTranslatorTest(string input, string expected)
         {
-            ITranslator specialTranslator = new SpecialTranslator();
+            ITranslator specialTranslator = new SpecialTranslator(false);
             
             Assert.Equal(expected, specialTranslator.Translate(input));
         }
@@ -23,7 +23,7 @@ namespace BrailleTests
         [InlineData("123", "⠼⠁⠃⠉")]
         public void NumericTranslatorTest(string input, string expected)
         {
-            ITranslator numericTranslator = new NumericTranslator();
+            ITranslator numericTranslator = new NumericTranslator(false);
             
             Assert.Equal(expected, numericTranslator.Translate(input));
         }
@@ -34,7 +34,7 @@ namespace BrailleTests
         [InlineData("Привет", "⠠⠏⠗⠊⠺⠑⠞")]
         public void RussianTranslatorTest(string input, string expected)
         {
-            var russianTranslator = new MultilingualTranslator(Language.Russian);
+            var russianTranslator = new MultilingualTranslator(Language.Russian, false);
 
             Assert.Equal(expected, russianTranslator.Translate(input));
         }
@@ -45,7 +45,7 @@ namespace BrailleTests
         [InlineData("Hello", "⠠⠓⠑⠇⠇⠕")]
         public void EnglishTranslatorTest(string input, string expected)
         {
-            var englishTranslator = new MultilingualTranslator(Language.English);
+            var englishTranslator = new MultilingualTranslator(Language.English, false);
 
             Assert.Equal(expected, englishTranslator.Translate(input));
         }

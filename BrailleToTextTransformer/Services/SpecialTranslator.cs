@@ -6,7 +6,7 @@ namespace BrailleToTextTransformer.Services
 {
     public sealed class SpecialTranslator : TranslatorBase
     {
-        public SpecialTranslator(bool isReverseTranslation = false) : base(isReverseTranslation)
+        public SpecialTranslator(bool isReverseTranslation) : base(isReverseTranslation)
         {
             TranslatorDictionary = CreateTranslationDictionary(isReverseTranslation);
         }

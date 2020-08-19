@@ -9,7 +9,7 @@ namespace BrailleToTextTransformer.Base
         protected Dictionary<string, string> TranslatorDictionary { get; set; }
         protected bool IsReverseTranslation { get; }
 
-        protected TranslatorBase(bool isReverseTranslation = false) => IsReverseTranslation = isReverseTranslation;
+        protected TranslatorBase(bool isReverseTranslation) => IsReverseTranslation = isReverseTranslation;
 
         public virtual string Translate(string input)
             => CanTranslate(input) ? string.Join("", input.Select(TranslateChar)) : "";

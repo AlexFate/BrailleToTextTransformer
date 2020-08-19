@@ -8,7 +8,7 @@ namespace BrailleToTextTransformer.Services
     public sealed class NumericTranslator : TranslatorBase
     {
         public const string NumericMarkerSymbol = "⠼";
-        public NumericTranslator(bool isReverseTranslation = false) : base(isReverseTranslation)
+        public NumericTranslator(bool isReverseTranslation) : base(isReverseTranslation)
         {
             TranslatorDictionary = CreateTranslationDictionary(isReverseTranslation);
         }

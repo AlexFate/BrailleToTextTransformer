@@ -1,6 +1,6 @@
 using System;
 using System.Linq;
-using BrailleToTextTransformer.Base;
+
 using BrailleToTextTransformer.Base.Interfaces;
 using BrailleToTextTransformer.Models;
 
@@ -8,12 +8,12 @@ namespace BrailleToTextTransformer.Services
 {
     public sealed class TextTranslator : ITranslator
     {
-        private TranslatorBase LanguageTranslator { get; }
-        private TranslatorBase NumericTranslator { get; }
-        private TranslatorBase SpecialSymbolTranslator { get; }
+        private ITranslator LanguageTranslator { get; }
+        private ITranslator NumericTranslator { get; }
+        private ITranslator SpecialSymbolTranslator { get; }
 
-        public TextTranslator(TranslatorBase languageTranslator, TranslatorBase numericTranslator, 
-            TranslatorBase specialSymbolTranslator)
+        public TextTranslator(ITranslator languageTranslator, ITranslator numericTranslator, 
+            ITranslator specialSymbolTranslator)
         {
             LanguageTranslator = languageTranslator;
             NumericTranslator = numericTranslator;
