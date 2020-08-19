@@ -36,7 +36,7 @@ Your select translationLang to Language.English. But input string contains russi
 For example: Hi, Джим.
 TextTranslator translate 'Hi, .' to  braille. But ignore Джим.
 ```
-####[Second]
+#### [Second]
 ```c#
 Input string contains special symbol, that can't be translated with SpecialTranslator.
 For example: #it_hash_teg
