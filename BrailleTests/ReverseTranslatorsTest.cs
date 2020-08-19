@@ -1,6 +1,6 @@
-using BrailleToTextTransformer.Base.Interfaces;
 using BrailleToTextTransformer.Models;
 using BrailleToTextTransformer.Services;
+
 using Xunit;
 
 namespace BrailleTests
