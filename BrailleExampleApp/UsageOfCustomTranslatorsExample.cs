@@ -16,7 +16,7 @@ namespace BrailleExampleApp
             var defaultLangTranslator = new MultilingualTranslator(Language.English, isReverseTranslations);
             var defaultSpecialsTranslator = new SpecialTranslator(isReverseTranslations);
             
-            // Create default TextTranslator, and pass our preconfigured translators as ctor args.
+            // Create TextTranslator, and pass our preconfigured translators as .ctor args.
             var defaultTextTranslator = new TextTranslator(defaultLangTranslator, customNumericTranslator, defaultSpecialsTranslator);
         }
     }

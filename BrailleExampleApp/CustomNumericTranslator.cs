@@ -20,11 +20,11 @@ namespace BrailleExampleApp
         public CustomNumericTranslator(bool isReverseTranslations = false) : base(isReverseTranslations)
         {
             // TranslatorBase has Dictionary<string, string> that is a dictionary of translations
-            // Your should create it for custom type
+            // You should create it for custom type
             TranslatorDictionary = new Dictionary<string, string>();
         }
         // This method can be overridden optionally.
-        // Base it use Translate(char input) on every char of input string  
+        // Base it use Translate(char input) to every char in input string  
         public override string Translate(string input)
         {
             return base.Translate(input);
@@ -44,7 +44,7 @@ namespace BrailleExampleApp
             return base.CanTranslate(input);
         }
         // This method can be overridden optionally.
-        // Base it check that input char exist in TranslatorDictionary
+        // Default it check that input char exist in TranslatorDictionary
         public override bool CanTranslate(char input)
         {
             return base.CanTranslate(input);
