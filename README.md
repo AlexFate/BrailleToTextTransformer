@@ -1,8 +1,8 @@
 # BrailleToTextTransformer
-This project allow your to transform text from language (English, Russian were supported now) to Braille text.
-And, of course, allows your to make reverse conversion from Braille to lang.
+This project allows you to transform text from language (English, Russian were supported now) to Braille text.
+And, of course, allows you to make reverse conversion from Braille to lang.
 ## Example
-* [HowTo](https://github.com/AlexFate/BrailleToTextTransformer/wiki) - Project wiki on github
+* [HowTo](https://github.com/AlexFate/BrailleToTextTransformer/tree/master/BrailleExampleApp) - Project example on github
 ## Getting Started - Installation
 Your can use it as NuGetPackage, or download, compile and add reference on it in your project.
 ## Built With
