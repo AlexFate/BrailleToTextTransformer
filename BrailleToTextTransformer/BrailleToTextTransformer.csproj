@@ -1,7 +1,20 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
+        <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
         <TargetFramework>netstandard2.0</TargetFramework>
+        <Authors>AlexandrPonizov, Maxim Pimkin</Authors>
+        <Description>This project allow your to transform text from language (English, Russian were supported now) to Braille text. And, of course, allows your to make reverse conversion from Braille to lang.</Description>
+        <Copyright>Authors: AlexandrPonizov, Maxim Pimkin</Copyright>
+        <PackageProjectUrl>https://github.com/AlexFate/BrailleToTextTransformer</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/AlexFate/BrailleToTextTransformer</RepositoryUrl>
+        <PackageTags>csharp, braille, translator, text</PackageTags>
     </PropertyGroup>
 
+    <ItemGroup>
+        <None Include="..\LICENSE.md">
+            <Pack>True</Pack>
+        </None>
+    </ItemGroup>
+    
 </Project>
